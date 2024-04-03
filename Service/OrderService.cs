@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Elham.OrderManagement.Service
 {
-    internal class OrderService: IOrderService
+    public class OrderService: IOrderService
     {
         private readonly Context _context;
         private readonly ILogger<OrderService> _logger;
@@ -61,12 +61,15 @@ namespace Elham.OrderManagement.Service
 
         public void GetList()
         {
+            Console.WriteLine("==========================\nOrderList");
+
             var orderList = _context.Orders.Where(x => x.Id > 0)
                 .ToList();
 
             foreach (var item in orderList)
             {
-                Console.WriteLine($"Id: {item.Id}, Name: {item.Name}");
+                var customer = _context.Customers.Single(x => x.Id == item.CustomerId);
+                Console.WriteLine($"Id: {item.Id}, Name: {item.Name} , CustomerName: {customer.FirstName} {customer.LastName}");
             }
         }
 

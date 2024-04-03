@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Elham.OrderManagement.Service
 {
-    internal interface IOrderService
+    public interface IOrderService
     {
         void Create();
         void Get(int id);

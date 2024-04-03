@@ -59,6 +59,8 @@ namespace Elham.OrderManagement.Service
 
         public void GetList()
         {
+            Console.WriteLine("==========================\nCustomerList");
+
             var customerList = _context.Customers.Where(x => x.Id > 0)
                 .ToList();
 

@@ -27,15 +27,19 @@ namespace ConsoleApp1
                 });
 
                 services.AddTransient<ICustomerService, CustomerService>();
+                services.AddTransient<IOrderService, OrderService>();
                 services.AddLogging();
             });
 
             var host = builder.Build();
 
 
-            var executer = host.Services.GetService<ICustomerService>();
-            executer.GetList();
-                
+            var customerService = host.Services.GetService<ICustomerService>();
+            customerService.GetList();
+
+            var orderService = host.Services.GetService<IOrderService>();
+            orderService.GetList();
+
 
             host.Run();
         }
